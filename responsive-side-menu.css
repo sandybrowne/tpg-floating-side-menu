@@ -1,0 +1,232 @@
+<style>
+/* =====================================================
+   BASE FLOATING MENU (applies to all screen sizes)
+   ===================================================== */
+   #floating-menu {
+    position: fixed;
+    bottom: 100px;
+    left: 5px;
+    background-color: #003366;
+    box-shadow: 0px 4px 20px rgba(0, 0, 0, 0.3);
+    padding: 6px 4px;
+    border-radius: 20px;
+    display: none;           /* Visible only after scroll > 300px */
+    z-index: 9999 !important;
+    overflow: hidden;        /* Hide content when collapsed */
+  }
+  
+  /* Container for the menu links */
+  .menu-links {
+    display: block; /* Overridden in collapsed state */
+  }
+  
+  /* Base link styling */
+  #floating-menu a {
+    display: block;
+    color: #ffffff;
+    text-decoration: none;
+    padding: 6px 8px;
+    font-size: 1rem;
+    border-left: 3px solid transparent;
+    transition: background-color 0.3s, color 0.3s, border-color 0.3s;
+  }
+  #floating-menu a:hover {
+    background-color: #ffcc00;
+    color: #003366;
+  }
+  #floating-menu a.active {
+    border-left-color: #ffcc00;
+  }
+  
+  /* ==============================================
+     TOGGLER (ICON + TEXT) ALWAYS VISIBLE
+     ============================================== */
+  #menu-toggle {
+    cursor: pointer;
+    user-select: none;
+    text-align: center;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    padding: 5px 10px;
+  }
+  
+  /* Shared class for icons */
+  .icon {
+    font-size: 1.2rem;
+    color: #ffffff;
+  }
+  
+  /* Two separate icons for each state */
+  .hamburger-icon { /* Shown when collapsed */ }
+  .chevron-icon {   /* Shown when expanded */ }
+  
+  /* "Menu" label toggles orientation based on collapsed vs expanded */
+  .menu-text {
+    color: #ffffff;
+    font-size: 0.9rem;
+    margin-left: 8px;  /* spacing in row layout */
+  }
+  
+  /* ==============================================
+     COLLAPSED STATE
+     ============================================== */
+  #floating-menu.collapsed {
+    /* Make it narrower so only hamburger + vertical text are visible */
+    width: 60px; /* Adjust to your preference for desktop default */
+  }
+  
+  /* Hide links when collapsed */
+  #floating-menu.collapsed .menu-links {
+    display: none;
+  }
+  
+  /* Collapsed: stack hamburger + text vertically */
+  #floating-menu.collapsed #menu-toggle {
+    flex-direction: column;
+    align-items: center;
+    justify-content: center;
+  }
+  
+  /* Show hamburger, hide chevron in collapsed */
+  #floating-menu.collapsed .hamburger-icon {
+    display: block;
+    margin-bottom: 4px;
+  }
+  #floating-menu.collapsed .chevron-icon {
+    display: none;
+  }
+  
+  /* Vertical text in collapsed mode */
+  #floating-menu.collapsed .menu-text {
+    margin-left: 0;
+    writing-mode: vertical-lr;
+    text-orientation: upright;
+  }
+  
+  /* ==============================================
+     EXPANDED STATE
+     ============================================== */
+  #floating-menu:not(.collapsed) {
+    /* You can define a width if you want, or let it auto-fit */
+    width: auto;
+  }
+  
+  /* Expand: row layout with text & chevron in line */
+  #floating-menu:not(.collapsed) #menu-toggle {
+    flex-direction: row;
+    justify-content: center;
+  }
+  
+  /* Show hamburger in expanded */
+  #floating-menu:not(.collapsed) .hamburger-icon {
+    display: inline-block;
+  }
+  /* Hide chevron in expanded */
+  #floating-menu:not(.collapsed) .chevron-icon {
+        display: none;
+    margin-left: 8px; /* space between "Menu" text and chevron */
+  }
+  
+  /* Horizontal text in expanded mode */
+  #floating-menu:not(.collapsed) .menu-text {
+    writing-mode: horizontal-tb;
+    text-orientation: mixed;
+    margin-left: 8px;
+    margin-top: 0;
+  }
+  
+  /* ==============================================
+     BREAKPOINTS (PHONE, TABLET, etc.)
+     You can tweak widths, font sizes, etc.
+     ============================================== */
+  
+  /* PHONE (≤ 766px) */
+  @media (max-width: 766px) {
+    /* Collapsed can be narrower on small phones, e.g. 45px */
+    #floating-menu.collapsed {
+      width: 45px;
+    }
+    #floating-menu a {
+      font-size: 0.9rem;
+    }
+  }
+  
+  /* TABLET (767px to 980px) */
+  @media (min-width: 767px) and (max-width: 980px) {
+    #floating-menu.collapsed {
+      width: 50px;
+    }
+    #floating-menu a {
+      font-size: 0.95rem;
+    }
+  }
+  
+  /* DESKTOP (≥ 981px) */
+  @media (min-width: 981px) {
+    /* You might want a bigger collapsed width on large screens, 
+       e.g. 60px or 70px so the text is more readable. */
+    #floating-menu.collapsed {
+      width: 60px; 
+    }
+    #floating-menu a {
+      font-size: 1rem; 
+    }
+  }
+  
+  /* white text on all TPG dark background image in Section @ head of body */
+  header-image {
+      color:white !important;
+  }
+  /* white body text  */
+  white-body {
+      color:white !important;
+  } 
+  /* white logo banner text */
+  white-text {
+      color: white !important;
+  }
+  et_pb_blurb_description_white {
+      color:white !important;
+  }
+  /* Black List Items UL text */
+  .ul-black-text li
+  {
+      color: black !important;
+  }
+  /* Black link text */
+  
+  .black-link a {
+      color: black !important;
+      text-decoration: underline !important;
+      font-weight: bold !important;
+  }
+  /* Footer text for footer */
+  @media only screen and (max-width: 600px) { footer a { 
+      font-size: 24px !important;
+  }
+       /* Specific styling for email link */
+    footer a[href^="mailto:"] {
+      font-size: 16px !important; /* Adjust this value as needed */
+    }
+  
+  }
+  /* Aswap images & text in column for tablets & phone viewport Add column-reverse class to your row
+  Add col-1 to your first column
+  Add col-2 to your second column*/
+  @media (max-width: 980px) {
+      .column-reverse {
+          display: flex;
+          flex-wrap: wrap;
+      }
+      .column-reverse .col-1 { order: 2; }
+      .column-reverse .col-2 { order: 1; }
+  }
+      /* Front Page Column reverse on advert */
+  @media screen and (max-width: 980px) {
+    .reverse {
+      display: flex;
+      flex-direction: column-reverse;
+    }
+  } 
+  </style>
